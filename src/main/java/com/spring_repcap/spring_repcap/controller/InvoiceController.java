@@ -1,6 +1,7 @@
 package com.spring_repcap.spring_repcap.controller;
 
 import com.spring_repcap.spring_repcap.controller.dtos.InvoiceDto;
+import com.spring_repcap.spring_repcap.controller.dtos.ResponsePayLoad;
 import com.spring_repcap.spring_repcap.mappers.InvoiceMapper;
 import com.spring_repcap.spring_repcap.persitance.entities.Invoice;
 import com.spring_repcap.spring_repcap.services.InvoiceServices;
@@ -30,9 +31,11 @@ public class InvoiceController {
 
     @PostMapping
 
-    public ResponseEntity<InvoiceDto> addInvoice(@RequestBody InvoiceDto invoiceDto) {
+    public ResponseEntity<ResponsePayLoad<InvoiceDto>> addInvoice(@RequestBody InvoiceDto invoiceDto) {
         Invoice invoice = invoiceServices.addInvoice(InvoiceMapper.toEntity(invoiceDto));
-        return new ResponseEntity<>(InvoiceMapper.toDto(invoice), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponsePayLoad<>(InvoiceMapper.toDto(invoice),
+                "Invoice added successfully"),
+                HttpStatus.CREATED);
 
     }
 

@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 public class InvoiceDto {
 
@@ -16,5 +18,7 @@ public class InvoiceDto {
     private LocalDateTime date;
 
     private Double total;
+
+    private List<InvoiceItemDto> items;
 
 }
